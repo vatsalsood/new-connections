@@ -1,5 +1,7 @@
 import pytest
 from tests.factories import ConnectionFactory, PersonFactory
+import logging
+
 
 
 @pytest.mark.xfail

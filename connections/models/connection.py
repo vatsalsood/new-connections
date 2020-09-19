@@ -15,9 +15,11 @@ class ConnectionType(enum.Enum):
     friend = 'friend'
     coworker = 'coworker'
 
-
+# Attempted doing join but not retrieving correct
 class Connection(Model, CRUDMixin, CreatedUpdatedMixin):
     id = db.Column(db.Integer, primary_key=True)
     from_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     to_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     connection_type = db.Column(db.Enum(ConnectionType), nullable=False)
+    from_person =  db.relationship("Person", primaryjoin="Connection.from_person_id == Person.id")
+    to_person =  db.relationship("Person", primaryjoin="Connection.to_person_id == Person.id")
